@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class Image {
 
-    private byte size;
-    private String imageTitle;
+    private String name;
+    private String description;
+    private String path;
 }
