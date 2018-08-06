@@ -1,19 +1,20 @@
-package com.liberty.doshka.model;
+package com.liberty.doshka.form;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class User {
+@AllArgsConstructor
+public class UserForm {
 
     private Long userId;
     private String userName;
     private String firstName;
     private String lastName;
     private String email;
-    private String encryptedPassword;
+    private String password;
+    private String confirmPassword;
 
 }
