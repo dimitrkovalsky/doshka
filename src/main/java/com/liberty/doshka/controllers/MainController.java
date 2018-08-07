@@ -4,6 +4,7 @@ import com.liberty.doshka.dao.UserDAO;
 import com.liberty.doshka.form.UserForm;
 import com.liberty.doshka.model.User;
 import com.liberty.doshka.validation.UserValidator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+@Slf4j
 @Controller
 public class MainController {
 
@@ -32,7 +34,7 @@ public class MainController {
         if (target==null){
             return;
         }
-        System.out.println("Target "+ target);
+        log.info("Target "+ target);
         if (target.getClass()== UserForm.class){
             dataBinder.setValidator(userValidator);
         }
