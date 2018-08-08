@@ -51,9 +51,9 @@
         </tr>
         <tr>
             <td>Email</td>
-            <td><input type="text" th:field="*{email}" /> </td>
+            <td><input type="text" th:field="*{emailAddress}" /> </td>
             <td>
-                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">..</span>
+                <span th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">..</span>
             </td>
         </tr>
         <tr>
@@ -70,30 +70,6 @@
                 <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">..</span>
             </td>
         </tr>
-        <!--<tr>-->
-            <!--<td>Gender</td>-->
-            <!--<td>-->
-                <!--<select th:field="*{gender}">-->
-                    <!--<option value=""> &#45;&#45; </option>-->
-                    <!--<option value="M">Male</option>-->
-                    <!--<option value="F">Female</option>-->
-                <!--</select>-->
-            <!--</td>-->
-            <!--<td>-->
-                <!--<span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">..</span>-->
-            <!--</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td>Country</td>-->
-            <!--<td>-->
-                <!--<select th:field="*{countryCode}">-->
-                    <!--<option value=""> &#45;&#45; </option>-->
-                    <!--<option th:each="country : ${countries}"-->
-                            <!--th:value="${country.countryCode}"-->
-                            <!--th:utext="${country.countryName}"/>-->
-                <!--</select>-->
-            <!--<td><span th:if="${#fields.hasErrors('countryCode')}" th:errors="*{countryCode}">..</span></td>-->
-        <!--</tr>-->
         <tr>
             <td>&nbsp;</td>
             <td>

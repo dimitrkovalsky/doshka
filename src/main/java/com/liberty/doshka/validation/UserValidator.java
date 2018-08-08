@@ -1,8 +1,8 @@
 package com.liberty.doshka.validation;
 
-import com.liberty.doshka.dao.UserDAO;
 import com.liberty.doshka.form.UserForm;
 import com.liberty.doshka.model.User;
+import com.liberty.doshka.repository.UserRepository;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,10 @@ public class UserValidator implements Validator{
     private EmailValidator emailValidator = EmailValidator.getInstance();
 
     @Autowired
-    private UserDAO userDAO;
+    UserRepository userRepository;
+
+//    @Autowired
+//    private UserService userService;
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -29,22 +32,22 @@ public class UserValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "NotEmpty.userForm.userName");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "NotEmpty.userForm.firstName");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "NotEmpty.userForm.lastName");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty.userForm.email");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "emailAddress", "NotEmpty.userForm.emailAddress");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty.userForm.password");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "NotEmpty.userForm.confirmPassword");
 
-        if (!this.emailValidator.isValid(userForm.getEmail())){
-            //invalid email
-            errors.rejectValue("email", "Pattern.userForm.email");
+        if (!this.emailValidator.isValid(userForm.getEmailAddress())){
+            //invalid emailAddress
+            errors.rejectValue("emailAddress", "Pattern.userForm.emailAddress");
         } else if (userForm.getUserId() == null){
-            User dbUser = userDAO.findUserByEmail(userForm.getEmail());
+            User dbUser = userRepository.findOneByEmailAddress(userForm.getEmailAddress());
             if (dbUser !=null){
                 //UserName is not available.
-                errors.rejectValue("userName", "Duplicate.userForm.email");
+                errors.rejectValue("userName", "Duplicate.userForm.emailAddress");
             }
         }
         if (errors.hasFieldErrors("userName")){
-            User dbUser = userDAO.findAppUserByUserName(userForm.getUserName());
+            User dbUser = userRepository.findUserByUserName(userForm.getUserName());
             if (dbUser != null) {
                 // Username is not available.
                 errors.rejectValue("userName", "Duplicate.userForm.userName");

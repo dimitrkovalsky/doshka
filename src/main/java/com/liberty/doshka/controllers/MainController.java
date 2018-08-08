@@ -1,6 +1,6 @@
 package com.liberty.doshka.controllers;
 
-import com.liberty.doshka.dao.UserDAO;
+import com.liberty.doshka.dao.UserService;
 import com.liberty.doshka.form.UserForm;
 import com.liberty.doshka.model.User;
 import com.liberty.doshka.validation.UserValidator;
@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MainController {
 
     @Autowired
-    private UserDAO userDAO;
+    private UserService userService;
 
     @Autowired
     private UserValidator userValidator;
@@ -68,7 +68,7 @@ public class MainController {
         }
         User newUser = null;
         try{
-            newUser = userDAO.createUser(userForm);
+            newUser = userService.createUser(userForm);
         } catch (Exception e){
             model.addAttribute("errorMessage", "Error" + e.getMessage());
             return "registerPage";

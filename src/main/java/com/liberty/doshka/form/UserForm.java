@@ -13,7 +13,7 @@ public class UserForm {
     private String userName;
     private String firstName;
     private String lastName;
-    private String email;
+    private String emailAddress;
     private String password;
     private String confirmPassword;
 
