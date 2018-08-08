@@ -18,9 +18,6 @@ public class UserValidator implements Validator{
     @Autowired
     UserRepository userRepository;
 
-//    @Autowired
-//    private UserService userService;
-
     @Override
     public boolean supports(Class<?> clazz) {
         return clazz == UserForm.class;
@@ -47,7 +44,7 @@ public class UserValidator implements Validator{
             }
         }
         if (errors.hasFieldErrors("userName")){
-            User dbUser = userRepository.findUserByUserName(userForm.getUserName());
+            User dbUser = userRepository.findOneByUserName(userForm.getUserName());
             if (dbUser != null) {
                 // Username is not available.
                 errors.rejectValue("userName", "Duplicate.userForm.userName");

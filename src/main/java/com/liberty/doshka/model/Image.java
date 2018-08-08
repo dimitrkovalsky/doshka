@@ -1,14 +1,11 @@
 package com.liberty.doshka.model;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
 @Data
-@Table(name = "image")
+@Document(collection = "images")
 public class Image {
 
     @Id
